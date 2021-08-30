@@ -1,0 +1,15 @@
+img {
+  width: 100%;
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5px;
+}
+
+article {
+  border: solid black 1px;
+  padding: 1rem;
+  margin: 1rem;
+}

@@ -5,18 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="styles.css
+    "
+    />
   </head>
   <body>
     <section></section>
     <template>
       <article>
+        <h2 class="navn"></h2>
         <img src="" alt="" />
-        <p class="navn">Retten:</p>
+        <p class="kortbeskrivelse">Kort beskrivelse:</p>
+        <p class="oprindelsesregion">oprindelsesregion:</p>
+        <p class="pris">Pris på ret:</p>
       </article>
     </template>
 
     <script>
-      let personer;
+      let retter;
       let container;
       let temp;
 
@@ -39,22 +47,21 @@
 
       async function hentdata() {
         const result = await fetch(url, options);
-        personer = await result.json();
-        console.log(personer);
-        visPersoner();
+        retter = await result.json();
+        console.log(retter);
+        visRetter();
       }
 
-      function visPersoner() {
-        personer.forEach((person) => {
+      function visRetter() {
+        retter.forEach((ret) => {
           let klon = temp.cloneNode(true).content;
-          klon.querySelector("img").src = "images/" + person.billede;
-          klon.querySelector(".navn").textContent += " " + person.efternavn;
-          // klon.querySelector(".email").textContent += " " + person.email;
-          // klon.querySelector(".fødselsdag").textContent +=
-          //   " " + person.fødselsdag;
-          // klon.querySelector(".hobby").textContent += " " + person.hobby;
-          // klon.querySelector(".titel").textContent += " " + person.titel;
-          // klon.querySelector(".troende").textContent += " " + person.troende;
+          klon.querySelector(".navn").textContent = ret.navn;
+          klon.querySelector("img").src = "images/" + ret.billede;
+          klon.querySelector(".kortbeskrivelse").textContent +=
+            " " + ret.kortbeskrivelse;
+          klon.querySelector(".oprindelsesregion").textContent +=
+            " " + ret.oprindelsesregion;
+          klon.querySelector(".pris").textContent += " " + ret.pris;
           container.appendChild(klon);
         });
       }
