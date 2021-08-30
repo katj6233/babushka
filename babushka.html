@@ -81,7 +81,8 @@
           if (filter == ret.kategori || filter == "alle") {
             let klon = temp.cloneNode(true).content;
             klon.querySelector(".navn").textContent = ret.navn;
-            klon.querySelector("img").src = "images/" + ret.billede;
+            klon.querySelector("img").src =
+              "images/" + ret.billednavn + "-md.jpg";
             klon.querySelector(".kortbeskrivelse").textContent +=
               " " + ret.kortbeskrivelse;
             klon.querySelector(".oprindelsesregion").textContent +=
