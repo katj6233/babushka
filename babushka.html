@@ -12,6 +12,15 @@
     />
   </head>
   <body>
+    <h1>Alle</h1>
+    <nav>
+      <button data-retter="alle" class="valgt">Alle</button>
+      <button data-retter="forretter">Forretter</button>
+      <button data-retter="hovedretter">Hovedretter</button>
+      <button data-retter="desserter">Desserter</button>
+      <button data-retter="sideorders">Sideorders</button>
+      <button data-retter="drikkevarer">Drikkevarer</button>
+    </nav>
     <section></section>
     <template>
       <article>
@@ -27,6 +36,8 @@
       let retter;
       let container;
       let temp;
+      let filter = "alle";
+      const header = document.querySelector("h1");
 
       const url = "https://babushka-dd8a.restdb.io/rest/menu";
 
@@ -39,10 +50,22 @@
       document.addEventListener("DOMContentLoaded", start);
 
       function start() {
+        const filterKnapper = document.querySelectorAll("nav button");
+        filterKnapper.forEach((knap) =>
+          knap.addEventListener("click", filtrerRetter)
+        );
         container = document.querySelector("section");
         temp = document.querySelector("template");
         console.log(temp);
         hentdata();
+      }
+
+      function filtrerRetter() {
+        filter = this.dataset.retter;
+        document.querySelector(".valgt").classList.remove("valgt");
+        this.classList.add("valgt");
+        visRetter();
+        header.textContent = this.textContent;
       }
 
       async function hentdata() {
@@ -53,16 +76,19 @@
       }
 
       function visRetter() {
+        container.textContent = "";
         retter.forEach((ret) => {
-          let klon = temp.cloneNode(true).content;
-          klon.querySelector(".navn").textContent = ret.navn;
-          klon.querySelector("img").src = "images/" + ret.billede;
-          klon.querySelector(".kortbeskrivelse").textContent +=
-            " " + ret.kortbeskrivelse;
-          klon.querySelector(".oprindelsesregion").textContent +=
-            " " + ret.oprindelsesregion;
-          klon.querySelector(".pris").textContent += " " + ret.pris;
-          container.appendChild(klon);
+          if (filter == ret.kategori || filter == "alle") {
+            let klon = temp.cloneNode(true).content;
+            klon.querySelector(".navn").textContent = ret.navn;
+            klon.querySelector("img").src = "images/" + ret.billede;
+            klon.querySelector(".kortbeskrivelse").textContent +=
+              " " + ret.kortbeskrivelse;
+            klon.querySelector(".oprindelsesregion").textContent +=
+              " " + ret.oprindelsesregion;
+            klon.querySelector(".pris").textContent += " " + ret.pris;
+            container.appendChild(klon);
+          }
         });
       }
     </script>
