@@ -12,11 +12,7 @@
     />
   </head>
   <body>
-    <header>
-      <h1>Bistro Babushka</h1>
-    </header>
-
-    <h2>Menu</h2>
+    <h1>Alle</h1>
     <nav>
       <button data-retter="alle" class="valgt">Alle</button>
       <button data-retter="forretter">Forretter</button>
@@ -25,48 +21,23 @@
       <button data-retter="sideorders">Sideorders</button>
       <button data-retter="drikkevarer">Drikkevarer</button>
     </nav>
-    <h2 class="alle_tekst">Alle</h2>
     <section></section>
     <template>
       <article>
-        <h3 class="navn"></h3>
+        <h2 class="navn"></h2>
         <img src="" alt="" />
         <p class="kortbeskrivelse">Kort beskrivelse:</p>
+        <p class="oprindelsesregion">Oprindelsesregion:</p>
         <p class="pris">Pris på ret:</p>
       </article>
     </template>
-
-    <section id="popup">
-      <article>
-        <button>X</button>
-        <h3 class="navn"></h3>
-        <img src="" alt="" />
-        <p>Lang beskrivelse: <span class="langbeskrivelse"></span></p>
-        <p>Oprindelsesregion: <span class="oprindelsesregion"></span></p>
-        <p>Pris på ret: <span class="pris"></span></p>
-      </article>
-    </section>
-
-    <footer>
-      <div>
-        <p>Adresse:</p>
-        <p>Grønnegade 97</p>
-        <p>1234 København K</p>
-      </div>
-
-      <div>
-        <p>Åbningstider</p>
-        <p>Mandag-fredag 12:30-22:00</p>
-        <p>Lørdag 12:00-23:00</p>
-      </div>
-    </footer>
 
     <script>
       let retter;
       let container;
       let temp;
       let filter = "alle";
-      const header = document.querySelector(".alle_tekst");
+      const header = document.querySelector("h1");
 
       const url = "https://babushka-dd8a.restdb.io/rest/menu";
 
@@ -114,35 +85,15 @@
               "images/" + ret.billednavn + "-md.jpg";
             klon.querySelector(".kortbeskrivelse").textContent +=
               " " + ret.kortbeskrivelse;
-            klon.querySelector(".pris").textContent +=
-              " " + ret.pris + " " + ",-";
-            klon
-              .querySelector("article")
-              .addEventListener("click", () => visDetajler(ret));
+            klon.querySelector(".oprindelsesregion").textContent +=
+              " " + ret.oprindelsesregion;
+            klon.querySelector(".pris").textContent += " " + ret.pris;
+            klon.querySelector("article").addEventListener("click", () => {
+              location.href = "babushka-single.html?id=" + ret._id;
+            });
             container.appendChild(klon);
           }
         });
-      }
-
-      document
-        .querySelector("#popup button")
-        .addEventListener("click", lukPopup);
-
-      function lukPopup() {
-        document.querySelector("#popup").style.display = "none";
-      }
-
-      function visDetajler(detajler) {
-        const popup = document.querySelector("#popup");
-        popup.style.display = "block";
-        popup.querySelector(".navn").textContent = detajler.navn;
-        popup.querySelector("img").src =
-          "images/" + detajler.billednavn + "-md.jpg";
-        popup.querySelector(".langbeskrivelse").textContent =
-          detajler.langbeskrivelse;
-        popup.querySelector(".oprindelsesregion").textContent =
-          " " + detajler.oprindelsesregion;
-        popup.querySelector(".pris").textContent = " " + detajler.pris;
       }
     </script>
   </body>

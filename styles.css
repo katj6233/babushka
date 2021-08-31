@@ -6,6 +6,40 @@ body {
   margin: 0;
 }
 
+nav {
+  display: flex;
+  justify-content: left;
+  padding: 1rem;
+  gap: 5px;
+  overflow-x: auto;
+}
+
+nav button {
+  background-color: lightgoldenrodyellow;
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+}
+
+header {
+  background-color: orange;
+  padding-block: 3rem;
+}
+
+header h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1rem;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -18,21 +52,109 @@ article {
   margin: 1rem;
 }
 
-.valgt {
-  background-color: beige;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-  gap: 5px;
-  overflow-x: auto;
-}
-
-h1 {
+article p {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.valgt {
+  background-color: orange;
+}
+
+footer {
+  background-color: orange;
+  text-align: center;
+  margin-top: 1rem;
+  padding-block: 1rem;
+}
+
+footer div {
+  margin-top: 3rem;
+}
+
+#popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000099;
+  position: fixed;
+  top: 0;
+  display: none;
+}
+
+#popup img {
+  width: 70%;
+}
+
+#popup button {
+  position: fixed;
+  top: 9em;
+  left: 2em;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+#popup article {
+  background-color: white;
+  width: 80%;
+  text-align: center;
+  margin: 10em auto;
+}
+
+footer p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 500px) {
+  #popup {
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000099;
+    position: fixed;
+    top: 0;
+    display: none;
+  }
+
+  #popup img {
+    width: 40%;
+  }
+
+  #popup button {
+    position: fixed;
+    top: 9em;
+    left: 15em;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-weight: bolder;
+    font-size: 20px;
+  }
+
+  #popup article {
+    background-color: white;
+    width: 60%;
+    text-align: center;
+    margin: 10em auto;
+  }
+
+  footer {
+    background-color: orange;
+    display: flex;
+    text-align: left;
+    justify-content: space-around;
+    padding-inline: 20rem;
+    margin-block: 1rem;
+  }
+}
+
+/* #popup .langbeskrivelse {
+  margin-inline: 3rem;
+} */
 
 /* .kortbeskrivelse,
 .oprindelsesregion,
